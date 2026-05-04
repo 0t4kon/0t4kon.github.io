@@ -2,7 +2,7 @@
 title: "tech-01"
 date: 2025-07-21T15:00:00+08:00
 author: "guts"
-tags: ["Hugo", "Markdown", "Life"]
+tags: ["Hugo", "Markdown", "Tech"]
 categories: ["Introduction"]
 draft: false
 ---

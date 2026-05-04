@@ -1,0 +1,162 @@
+baseURL: https://0t4kon.github.io
+title: Otacon
+copyright: "© [POI Contributors](https://github.com/0t4kon/hugo-theme-POI)"
+theme: [hugo-theme-POI]
+
+enableInlineShortcodes: true # 开启内联短代码支持
+enableRobotsTXT: true        # 自动生成 robots.txt 文件
+buildDrafts: false           # 不生成草稿文章  
+buildFuture: false           # 不生成「未来日期」的文章
+buildExpired: false          # 不生成「 已过期」的文章
+enableEmoji: true            # 启用 Emoji 表情支持
+pygmentsUseClasses: true     # 代码高亮使用 CSS 类渲染
+mainsections: ["posts"]      # 仅保留文章目录，首页只展示你的博客文章
+cleanDestinationDir: true
+
+minify:
+  disableXML: true
+  # minifyOutput: true
+
+pagination:
+  disableAliases: false # 保留分页别名，默认配置，不用管
+  pagerSize: 4
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: Archive
+          url: archives
+          weight: 5
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Tags
+          url: tags/
+          weight: 10
+        - name: WiKi
+          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
+
+  zh-CN:
+    languageName: "简体中文"
+    weight: 2
+    title: 我的博客
+    # 统一使用标准分类法（删除法语前缀，兼容你的标签/归档）
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: 归档
+          url: archives/
+          weight: 5
+        - name: 标签
+          url: tags/
+          weight: 10
+        - name: 分类
+          url: categories/
+          weight: 10
+        - name: 系列
+          url: series/
+          weight: 10
+    # 中文专属配置
+    Params:
+      languageAltTitle: 简体中文
+      profileMode:
+        enabled: true
+        title: 个人博客
+        imageUrl: "https://raw.githubusercontent.com/googlefonts/noto-emoji/master/svg/emoji_u1f9d1_1f3fb_200d_1f4bb.svg"
+        imageTitle: 头像
+        subtitle: "⚡ 简洁 | 🌙 优雅 | 📱 响应式 | ✍️ 技术随笔"
+        buttons:
+          - name: 文章
+            url: posts
+          - name: 主题说明
+            url: https://github.com/adityatelange/hugo-PaperMod/wiki/Features#profile-mode
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+Params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: Otacon
+  author: 0t4kon
+  description: I'm a hobbyist developer. This website is mainly about my personal projects.
+  location: Shanghai China
+
+  defaultTheme: poi
+  # disableThemeToggle: true
+  ShowShareButtons: true
+  ShowReadingTime: true
+   # disableSpecial1stPost: true
+  displayFullLangName: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
+
+  profileMode:
+    enabled: false
+    title: PaperMod
+    imageUrl: "#"
+    imageTitle: my image
+    # imageWidth: 120
+    # imageHeight: 120
+    buttons:
+      - name: Archives
+        url: archives
+      - name: Tags
+        url: tags
+
+  homeInfoParams:
+    Title: "PaperMod's Demo"
+    Content: >
+      👋 Welcome to demo page of Hugo's theme PaperMod!
+
+      - **PaperMod**  is designed to be clean and simple but fast and responsive theme with useful feature-set that enhances UX.
+
+      - Feel free to show your support by giving us a star 🌟 on GitHub and sharing with your friends and social media .
+
+      - PaperMod is based on theme [Paper](https://github.com/nanxiaobei/hugo-paper/tree/4330c8b12aa48bfdecbcad6ad66145f679a430b3).
+
+  socialIcons:
+    - name: github
+      title: View Source on Github
+      url: "https://github.com/adityatelange/hugo-PaperMod"
+
+  assets:
+    disableHLJS: true
+
+
+markup: # Markdown 渲染核心配置
+  goldmark:  # 允许你在 Markdown 文章里直接写 HTML 代码
+    renderer:
+      unsafe: true
+  highlight: # 代码高亮
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 1
+
+caches:
+  images:
+    dir: :cacheDir/images
