@@ -1,0 +1,80 @@
+:root {
+    --gap: 24px;
+    --content-gap: 20px;
+    --nav-width: 1024px;
+    --main-width: 720px;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+    --theme: rgb(255, 255, 255);
+    --entry: rgb(255, 255, 255);
+    --primary: rgb(30, 30, 30);
+    --secondary: rgb(108, 108, 108);
+    --tertiary: rgb(214, 214, 214);
+    --content: rgb(31, 31, 31);
+    --code-block-bg: rgb(28, 29, 33);
+    --code-bg: rgb(245, 245, 245);
+    --border: rgb(238, 238, 238);
+    color-scheme: light;
+}
+.archives-main {
+    position: relative;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    max-width: calc(var(--main-width) + var(--gap) * 2);
+    margin: auto;
+    padding: var(--gap);
+}
+
+.archive-posts {
+    width: 100%;
+    font-size: 16px;
+}
+
+.archive-year {
+    margin-top: 40px;
+}
+
+.archive-year:not(:last-of-type) {
+    border-bottom: 2px solid var(--border);
+}
+
+.archive-month {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0;
+}
+
+.archive-month-header {
+    margin: 25px 0;
+    width: 200px;
+}
+
+.archive-month:not(:last-of-type) {
+    border-bottom: 1px solid var(--border);
+}
+
+.archive-entry {
+    position: relative;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.archive-entry-title {
+    margin: 5px 0;
+    font-weight: 400;
+}
+
+.archive-count,
+.archive-meta {
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+/* 修复归档条目点击失效 - 补充缺失的遮罩样式 */
+.entry-link {
+  position: absolute;
+  inset: 0;       /* 铺满整个父容器 */
+  z-index: 1;     /* 确保在最上层接收点击 */
+  opacity: 0;     /* 完全透明，不影响视觉 */
+  cursor: pointer;/* 鼠标悬浮显示手型 */
+}

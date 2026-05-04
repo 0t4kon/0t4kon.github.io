@@ -1,0 +1,67 @@
+{{ define "background" }}
+    <div class="bg-layer__1"></div>
+{{ end }}
+
+{{ define "main" }}
+<!-- 时间轴专属样式 -->
+<style>
+/* 外层居中容器 */
+.timeline-wrapper {
+  max-width: 800px;    
+  margin: 0 auto;     
+  padding: 0 1rem;    
+}
+.timeline { 
+  border-left: 3px solid #3182ce; 
+  padding-left: 2rem; 
+  margin: 2rem 0;
+}
+.timeline-item { 
+  position: relative; 
+  padding: 1.5rem 0;
+}
+.timeline-dot {
+  position: absolute;
+  left: -2.4rem;
+  top: 1.7rem;
+  width: 12px;
+  height: 12px;
+  background: #3182ce;
+  border-radius: 50%;
+}
+.timeline-date { 
+  color: #718096; 
+  font-size: 0.9rem; 
+}
+.timeline-title a { 
+  font-size: 1.1rem; 
+  color: #2d3748; 
+  text-decoration: none;
+}
+.timeline-title a:hover { color: #3182ce; }
+/* 暗色模式适配 */
+.dark .timeline-date { color: #a0aec0; }
+.dark .timeline-title a { color: #e2e8f0; }
+main.content h1 {
+  text-align: center;
+}
+</style>
+
+<main class="content">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  <div class="timeline-wrapper">
+    <div class="timeline">
+      {{/* ✅ 终极修复：括号包裹过滤条件 + 链式排序（标准 Hugo 语法） */}}
+      {{ range (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">{{ .Date.Format "2006-01-02" }}</div>
+        <div class="timeline-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</main>
+{{ end }}

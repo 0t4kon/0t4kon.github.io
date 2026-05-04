@@ -1,0 +1,20 @@
+.terms-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: var(--content-gap);
+    justify-content: center; /* 👈 就是这一行！水平居中 */
+}
+
+.terms-tags li {
+    display: inline-block;
+    font-weight: 500;
+}
+
+.terms-tags a {
+    display: block;
+    padding: 4px 10px;
+    background: var(--tertiary);
+    border-radius: var(--radius);
+    transition: transform 0.1s;
+}

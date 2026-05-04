@@ -1,0 +1,28 @@
+{{- if (.Param "ShowBreadCrumbs") -}}
+{{- /* 🔥 修复：加了 style 样式，强制同行显示 */ -}}
+<nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 6px; flex-wrap: nowrap;">
+    <a href='{{ "" | absLangURL }}'>
+        {{- i18n "home" | default "Home" -}}
+    </a>
+
+    {{- /* 🔥 核心修复：只有【不是首页】才执行后面的父级逻辑 */ -}}
+    {{- if not .IsHome -}}
+    {{- $url := replace .Parent.Permalink (printf "%s" site.Home.Permalink) "" }}
+    {{- $lang_url := strings.TrimPrefix (printf "%s/" .Lang) $url -}}
+    {{- $scratch := newScratch }}
+    {{- range $index, $element := split $lang_url "/" }}
+        {{- $scratch.Add "path" (printf "%s/" $element )}}
+        {{- $bc_pg := site.GetPage ($scratch.Get "path") -}}
+        {{- if (and ($bc_pg) (gt (len . ) 0))}}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" style="width: 16px; height: 16px;">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="{{ $bc_pg.Permalink }}">
+                {{- $bc_pg.Name -}}
+            </a>
+        {{- end }}
+    {{- end -}}
+    {{- end -}} {{- /* 结束首页判断 */ -}}
+</nav>
+{{- end -}}

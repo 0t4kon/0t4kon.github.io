@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+{{- $theme := site.Params.defaultTheme | default "poi" }}
+{{- if eq $theme "dark" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="dark">
+{{- else if eq $theme "light" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="light">
+{{- else }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="poi">
+{{- end }}
+
+<head>
+  {{- partial "head.html" . -}}
+  {{- block "head" . -}}{{ end }}
+</head>
+<body>
+  {{- block "background" . -}}{{ end }}
+
+  <a class="sr-skip" href="#main">SKIP TO MAIN CONTENT</a>
+  <header>
+    {{- partial "header.html" . -}}
+    {{- block "header" . -}}{{ end }}
+  </header>
+  <div id="top"></div>
+  
+  {{- block "main" . -}}{{ end }}
+  
+</body>
+</html>

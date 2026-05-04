@@ -1,0 +1,141 @@
+<!-- Meta Data -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+{{- if .IsHome }}
+{{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
+{{- else }}
+<meta name="keywords" content="{{ if .Params.keywords -}}
+    {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
+    {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
+{{- end }}
+<title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
+<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
+    {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
+    {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
+<meta name="author" content="{{ (partial "author.html" . ) }}">
+<meta name="generator" content="Hugo v{{ hugo.Version }}">
+<link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
+
+<!-- Favicons -->
+<link rel="icon" href="{{ "favicon.ico" | absURL }}" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="{{ "img/favicons/favicon.svg" | absURL }}" sizes="any">
+<link rel="apple-touch-icon" href="{{ "img/favicons/favicon-180.png" | absURL }}">
+<meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#ba0000" }}">
+
+<!-- RSS -->
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
+{{ end -}}
+{{- range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{ end -}}
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=barlow-semi-condensed:400,400i,700,700i&display=swap">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=inconsolata:400&display=swap">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=coda:400&display=swap">
+
+<!-- Stylesheets -->
+{{ $cssOpts := (dict "transpiler" "dartsass" "targetPath" "css/vendors.css"  ) }}
+{{ $vendors := resources.Get "css/vendors.scss" | toCSS $cssOpts }}
+{{ $cssOpts := (dict "transpiler" "dartsass" "targetPath" "css/common.css" ) }}
+{{ $common := resources.Get "css/common.scss" | toCSS $cssOpts }}
+
+<link rel="stylesheet" href="{{ $vendors.RelPermalink }}">
+<link rel="stylesheet" href="{{ $common.RelPermalink }}">
+
+{{ $layout := .Layout }}
+{{ if and (eq .Section "posts") (eq .Kind "section") }}
+    {{ $scssPath := "css/posts/list.scss" }}
+    {{ with resources.Get $scssPath }}
+    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/list.css") }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ end }}
+{{ else if and (eq .Section "posts") (eq .Kind "page") }}
+    {{ $scssPath := "css/posts/single.scss" }}
+    {{ with resources.Get $scssPath }}
+    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/single.css") }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ end }}
+{{ else if eq .Kind "taxonomy" }}
+    {{ $scssPath := "css/taxonomy.scss" }}
+    {{ with resources.Get $scssPath }}
+    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/taxonomy.css") }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ end }}
+{{ else if eq .Kind "term" }}
+    {{ $scssPath := "css/posts/list.scss" }}
+    {{ with resources.Get $scssPath }}
+    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/list.css") }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ end }}
+{{ else }}
+    {{ $scssPath := printf "css/%s.scss" $layout }}
+    {{ with resources.Get $scssPath }}
+    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" (printf "css/%s.css" $layout)) }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ end }}
+{{ end }}
+
+{{- /* theme-toggle is enabled */}}
+{{- if (not site.Params.disableThemeToggle) }}
+    {{- /* theme is light */}}
+    {{- if (eq site.Params.defaultTheme "light") }}
+        <script>
+            if (localStorage.getItem("pref-theme") === "dark") {
+                document.querySelector("html").dataset.theme = 'dark';
+            }
+        </script>
+    {{- /* theme is dark */}}
+    {{- else if (eq site.Params.defaultTheme "dark") }}
+        <script>
+            if (localStorage.getItem("pref-theme") === "light") {
+                document.querySelector("html").dataset.theme = 'light';
+            }
+        </script>
+    {{- else }}
+        {{- /* theme is auto */}}
+        <script>
+            if (localStorage.getItem("pref-theme") === "dark") {
+           {{- /*document.querySelector("html").dataset.theme = 'dark'; */}}
+            } else if (localStorage.getItem("pref-theme") === "light") {
+           {{- /*document.querySelector("html").dataset.theme = 'light'; */}}
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.querySelector("html").dataset.theme = 'dark';
+            } else {
+                document.querySelector("html").dataset.theme = 'poi';
+            }
+        </script>
+    {{- end }}
+{{- /* theme-toggle is disabled and theme is auto */}}
+{{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}}
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.querySelector("html").dataset.theme = 'dark';
+        } else {
+            document.querySelector("html").dataset.theme = 'poi';
+        }
+    </script>
+{{- end }}
+
+<!-- Scripts -->
+{{ if and (eq .Section "posts") (eq .Kind "page") }}
+    {{ $script1 := resources.Get "js/clipboard.js" | js.Build }}
+    <script src="{{ $script1.RelPermalink }}"></script>
+    {{ if not .Params.lightbox }}
+        {{ $script2 := resources.Get "js/vendors/bootstrap.bundle.min.js"| js.Build  }}
+        <script src="{{ $script2.RelPermalink }}"></script>
+        {{ $script3 := resources.Get "js/vendors/rat.lightbox.min.js"| js.Build  }}
+        <script src="{{ $script3.RelPermalink }}"></script>
+        {{ $script4 := resources.Get "js/lightbox.js" | js.Build }}
+        <script src="{{ $script4.RelPermalink }}"></script>
+    {{ end }}
+{{ end }}
