@@ -1,0 +1,17 @@
+# Navigation data
+
+- name: 博客
+  path: /posts/
+
+- name: 项目
+  description: 我的开源项目
+  path: /projects/
+
+- name: 标签
+  path: /tags/
+
+- name: 归档
+  path: /archives/
+
+- name: 时间线
+  path: /timeline/

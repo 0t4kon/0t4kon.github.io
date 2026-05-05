@@ -1,20 +1,26 @@
 <div class="card__samaritan-nav">
-    <div class="title">LINKS</div>
+    <div class="title">{{ i18n "links" }}</div>
     <nav class="content" aria-label="Main Navigation">
         <div class="subtitle">
-            <span>WEBSITE PAGE</span>
-            <span>PATH</span>
+            <span>{{ i18n "website_page" }}</span>
+            <span>{{ i18n "path" }}</span>
         </div>
-        {{ range .Site.Data.nav }}
+
+        {{ $lang := .Lang }}
+        {{ $nav := index .Site.Data $lang "nav" }}
+
+        {{ range $nav }}
             {{ if not .hide }}
-                <div class="content__row">
-                    <div class="text">{{ .name }}</div>
-                    <div class="label">
-                        <a href="{{ .path }}" aria-label="{{ with .description }}{{ . }}{{ else }}{{ .name }}{{ end }}" translate="no">
-                            {{ .path }}
-                        </a>
-                    </div>
+            <div class="content__row">
+                <div class="text">{{ .name }}</div>
+                <div class="label">
+                    <!-- ✅ 自动生成带语言的正确链接 -->
+                    <a href="{{ .path | relLangURL }}" 
+                       aria-label="{{ with .description }}{{ . }}{{ else }}{{ .name }}{{ end }}" translate="no">
+                        {{ .path  }}
+                    </a>
                 </div>
+            </div>
             {{ end }}
         {{ end }}
     </nav>

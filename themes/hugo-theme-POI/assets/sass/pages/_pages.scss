@@ -53,28 +53,40 @@ footer {
 
 // jekyll-paginate-v2 plugin
 .pagination {
-  display: flex;
-  /* 替换原来的 center 为 space-between */
-  justify-content: space-between; 
-  align-items: center;
-  margin-top: 3rem;
-  text-align: center;
-  width: 100%;
+    display: flex;
+    /* 关键1：让分页栏铺满整行，auto margin才能生效 */
+    width: 100%;
+    /* 关键2：两个按钮同时存在时的间距（可选，更美观） */
+    gap: 16px;
+    /* 辅助：垂直居中 */
+    align-items: center;
+}
 
-  li {
-    display: inline;
-    text-align: center;
-    font-size:x-large;
-    font-weight: 700;
-    padding: 0 5px 0 5px;
+.pagination a {
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    line-height: 36px;
+    background: rgb(30, 30, 30);
+    border-radius: calc(36px / 2);
+    padding: 0 16px;
+    /* 修复：防止按钮变形 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
 
-    margin: 0;
-    text-align: center;
-    width: 2.2rem;
+.pagination .next {
+    /* 关键3：双按钮存在时，把下一页推到最右侧 */
+    margin-inline-start: auto;
+}
 
-    a {
-      text-decoration: none;
-      font-weight: 300;
-    }
-  }
+/* 关键4：单独控制【只有一个按钮】时的位置 */
+/* 只有上一页 → 永远靠左 */
+.pagination .prev:only-child {
+    margin-right: auto;
+}
+/* 只有下一页 → 永远靠右 */
+.pagination .next:only-child {
+    margin-left: auto;
 }

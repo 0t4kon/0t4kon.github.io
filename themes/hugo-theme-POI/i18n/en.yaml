@@ -1,0 +1,93 @@
+- id: prev_page
+  translation: "Prev"
+
+- id: next_page
+  translation: "Next"
+
+- id: read_time
+  translation:
+    one : "1 min"
+    other: "{{ .Count }} min"
+
+- id: words
+  translation:
+    one : "word"
+    other: "{{ .Count }} words"
+
+- id: toc
+  translation: "Table of Contents"
+
+- id: translations
+  translation: "Translations"
+
+- id: home
+  translation: "Home"
+
+- id: edit_post
+  translation: "Edit"
+
+- id: code_copy
+  translation: "copy"
+
+- id: code_copied
+  translation: "copied!"
+
+# 通用
+- id: about
+  translation: "ABOUT"
+- id: location
+  translation: "Location"
+- id: email
+  translation: "Email"
+- id: links
+  translation: "LINKS"
+- id: website_page
+  translation: "WEBSITE PAGE"
+- id: path
+  translation: "PATH"
+- id: posts
+  translation: "Posts"
+
+# 项目卡片
+- id: status
+  translation: "Status"
+- id: active
+  translation: "Active"
+- id: discontinued
+  translation: "Discontinued"
+- id: feature_complete
+  translation: "Feature-Complete"
+- id: description
+  translation: "Description"
+- id: languages
+  translation: "Languages"
+- id: website
+  translation: "Website"
+- id: source_code
+  translation: "Source Code"
+
+# 月份
+- id: January
+  translation: "January"
+- id: February
+  translation: "February"
+- id: March
+  translation: "March"
+- id: April
+  translation: "April"
+- id: May
+  translation: "May"
+- id: June
+  translation: "June"
+- id: July
+  translation: "July"
+- id: August
+  translation: "August"
+- id: September
+  translation: "September"
+- id: October
+  translation: "October"
+- id: November
+  translation: "November"
+- id: December
+  translation: "December"

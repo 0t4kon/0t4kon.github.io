@@ -4,10 +4,11 @@
 
 {{ define "main" }}
 <main class="archives-main">
-  {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  <!-- ✅ 修复：只获取【当前语言】的文章 -->
+  {{ $pages := where (where site.RegularPages "Lang" .Lang) "Type" "in" site.Params.mainSections }}
 
   {{ if site.Params.ShowAllPagesInArchive }}
-    {{ $pages = site.RegularPages }}
+    {{ $pages = where site.RegularPages "Lang" .Lang }}
   {{ end }}
 
   {{ range $pages.GroupByPublishDate "2006" }}
@@ -24,7 +25,8 @@
       <div class="archive-month">
         <h3 class="archive-month-header" id="{{ $year }}-{{ .Key }}">
           <a class="archive-header-link" href="#{{ $year }}-{{ .Key }}">
-            {{- .Key -}}
+            <!-- ✅ 修复：月份自动翻译（英文→中文）-->
+            {{ i18n .Key }}
           </a>
           <sup class="archive-count">&nbsp;{{ len .Pages }}</sup>
         </h3>
@@ -46,6 +48,7 @@
             <div class="archive-meta">
               {{partial "post_meta.html" . }}
             </div>
+            <!-- ✅ 链接已经是 .Permalink 自动语言，不用改 -->
             <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
           </div>
           {{- end }}

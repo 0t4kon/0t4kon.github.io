@@ -1,0 +1,93 @@
+- id: prev_page
+  translation: "上一页"
+
+- id: next_page
+  translation: "下一页"
+
+- id: read_time
+  translation:
+    one : "1 分钟"
+    other: "{{ .Count }} 分钟"
+
+- id: words
+  translation: 
+    one: "字"
+    other: "{{ .Count }} 字"
+
+- id: toc
+  translation: "目录"
+
+- id: translations
+  translation: "语言"
+
+- id: home
+  translation: "主页"
+
+- id: edit_post
+  translation: "编辑"
+
+- id: code_copy
+  translation: "复制"
+
+- id: code_copied
+  translation: "已复制！"
+
+# 通用
+- id: about
+  translation: "关于"
+- id: location
+  translation: "位置"
+- id: email
+  translation: "邮箱"
+- id: links
+  translation: "链接"
+- id: website_page
+  translation: "网站页面"
+- id: path
+  translation: "路径"
+- id: posts
+  translation: "博客"
+
+# 项目卡片
+- id: status
+  translation: "状态"
+- id: active
+  translation: "活跃中"
+- id: discontinued
+  translation: "已停止"
+- id: feature_complete
+  translation: "功能完成"
+- id: description
+  translation: "描述"
+- id: languages
+  translation: "开发语言"
+- id: website
+  translation: "官网"
+- id: source_code
+  translation: "源码"
+
+# 月份
+- id: January
+  translation: "一月"
+- id: February
+  translation: "二月"
+- id: March
+  translation: "三月"
+- id: April
+  translation: "四月"
+- id: May
+  translation: "五月"
+- id: June
+  translation: "六月"
+- id: July
+  translation: "七月"
+- id: August
+  translation: "八月"
+- id: September
+  translation: "九月"
+- id: October
+  translation: "十月"
+- id: November
+  translation: "十一月"
+- id: December
+  translation: "十二月"

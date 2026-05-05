@@ -1,6 +1,6 @@
 <div class="col-md-6">
 	<div class="card__machine-project">
-		{{/* Comment: When DISCONTINUED or FEATURE-COMPLETE */}}
+		{{/* Comment: When DISCONTINU or FEATURE-COMPLETE */}}
 		{{ $status := .status }} <!-- 从参数中获取状态 -->
 		{{ if or (eq $status 0) (eq $status 2) }}
 			<div class="title inactive">
@@ -8,11 +8,11 @@
 				<span>{{ .title }}</span>
 			</div>
 			<div class="status inactive">
-				<span class="label">Status:</span>
+				<span class="label">{{ i18n "status" }}:</span>
 				{{ if eq $status 0 }}
-					<span class="text">Discontinued</span>
+					<span class="text">{{ i18n "discontinued" }}</span>
 				{{ else }}
-					<span class="text">Feature-Complete</span>
+					<span class="text">{{ i18n "feature_complete" }}</span>
 				{{ end }}
 			</div>
 		{{ else }}
@@ -21,15 +21,15 @@
 				<span>{{ .title }}</span>
 			</div>
 			<div class="status active">
-				<span class="label">Status:</span>
-				<span class="text">Active</span>
+				<span class="label">{{ i18n "status" }}:</span>
+				<span class="text">{{ i18n "active" }}</span>
 			</div>
 		{{ end }}
 		<hr aria-hidden="true">
 		<div class="summary">
-			<p>Description: <span>{{ .description }}</span></p>
+			<p>{{ i18n "description" }}: <span>{{ .description }}</span></p>
 			<p>
-				Languages:
+				{{ i18n "languages" }}:
 				<span>
 					{{- $comma := "" -}}
 					{{- range .languages -}}
@@ -41,9 +41,9 @@
 		</div>
 		<hr aria-hidden="true">
 		<div class="links">
-			<a href="{{ .url }}" aria-label="{{ .title }} Website">Website</a>
+			<a href="{{ .url }}" aria-label="{{ .title }} Website">{{ i18n "website" }}</a>
 			&middot;
-			<a href="{{ .source }}" aria-label="{{ .title }} Source Code">Source Code</a>
+			<a href="{{ .source }}" aria-label="{{ .title }} Source Code">{{ i18n "source_code" }}</a>
 		</div>
 	</div>
 </div>

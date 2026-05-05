@@ -1,5 +1,5 @@
 ---
-title: "Archives"
+title: "归档"
 layout: "archives" # 绑定自定义模板
 ---
 # 博客归档

@@ -66,4 +66,20 @@ header {
     padding-bottom: px2rem(40px);
     margin-bottom: 1rem;
   }
+.lang-switches .lang-menu {
+    display: flex;
+    list-style: none; /* 去掉默认列表符号 */
+    padding: 0;
+    margin: 0;
+    gap: 1rem; /* 给语言项之间加一点间距 */
+}
+
+.lang-switches .lang-menu li {
+    margin: 0;
+}
+
+.lang-switches .lang-menu a {
+    color: #fff; /* 保持和主题文字一致 */
+    text-decoration: none;
+}
 }

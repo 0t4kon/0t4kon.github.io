@@ -43,43 +43,34 @@ languages:
         - name: WiKi
           url: https://github.com/adityatelange/hugo-PaperMod/wiki/
 
-  zh-CN:
-    languageName: "简体中文"
+  zh:
+    languageName: ":zh:"
     weight: 2
-    title: 我的博客
-    # 统一使用标准分类法（删除法语前缀，兼容你的标签/归档）
+    title: Otacon
     taxonomies:
-      category: categories
-      tag: tags
-      series: series
+      category: ZHcategories
+      tag: ZHtags
+      series: ZHseries
     menu:
       main:
         - name: 归档
           url: archives/
           weight: 5
         - name: 标签
-          url: tags/
+          url: ZHtags/
           weight: 10
         - name: 分类
-          url: categories/
+          url: ZHcategories/
           weight: 10
         - name: 系列
-          url: series/
+          url: ZHseries/
           weight: 10
+        - name: NullLink
+          url: "#"
+
     # 中文专属配置
     Params:
       languageAltTitle: 简体中文
-      profileMode:
-        enabled: true
-        title: 个人博客
-        imageUrl: "https://raw.githubusercontent.com/googlefonts/noto-emoji/master/svg/emoji_u1f9d1_1f3fb_200d_1f4bb.svg"
-        imageTitle: 头像
-        subtitle: "⚡ 简洁 | 🌙 优雅 | 📱 响应式 | ✍️ 技术随笔"
-        buttons:
-          - name: 文章
-            url: posts
-          - name: 主题说明
-            url: https://github.com/adityatelange/hugo-PaperMod/wiki/Features#profile-mode
 
 outputs:
   home:
@@ -95,7 +86,8 @@ Params:
   location: Shanghai China
 
   defaultTheme: poi
-  # disableThemeToggle: true
+  disableThemeToggle: true
+  disableLangToggle: false
   ShowShareButtons: true
   ShowReadingTime: true
    # disableSpecial1stPost: true

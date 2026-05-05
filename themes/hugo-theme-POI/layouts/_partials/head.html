@@ -52,37 +52,49 @@
 <link rel="stylesheet" href="{{ $vendors.RelPermalink }}">
 <link rel="stylesheet" href="{{ $common.RelPermalink }}">
 
-{{ $layout := .Layout }}
-{{ if and (eq .Section "posts") (eq .Kind "section") }}
-    {{ $scssPath := "css/posts/list.scss" }}
-    {{ with resources.Get $scssPath }}
-    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/list.css") }}
+{{/* ✅ 修复：优先判断 首页（中英文都生效） */}}
+{{ if .IsHome }}
+  {{ $scssPath := "css/home.scss" }}
+  {{ with resources.Get $scssPath }}
+    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/home.css") }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-    {{ end }}
+  {{ end }}
+
+{{ else if and (eq .Section "posts") (eq .Kind "section") }}
+  {{ $scssPath := "css/posts/list.scss" }}
+  {{ with resources.Get $scssPath }}
+  {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/list.css") }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ end }}
+
 {{ else if and (eq .Section "posts") (eq .Kind "page") }}
-    {{ $scssPath := "css/posts/single.scss" }}
-    {{ with resources.Get $scssPath }}
-    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/single.css") }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-    {{ end }}
+  {{ $scssPath := "css/posts/single.scss" }}
+  {{ with resources.Get $scssPath }}
+  {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/single.css") }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ end }}
+
 {{ else if eq .Kind "taxonomy" }}
-    {{ $scssPath := "css/taxonomy.scss" }}
-    {{ with resources.Get $scssPath }}
-    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/taxonomy.css") }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-    {{ end }}
+  {{ $scssPath := "css/taxonomy.scss" }}
+  {{ with resources.Get $scssPath }}
+  {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/taxonomy.css") }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ end }}
+
 {{ else if eq .Kind "term" }}
-    {{ $scssPath := "css/posts/list.scss" }}
-    {{ with resources.Get $scssPath }}
-    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/list.css") }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-    {{ end }}
+  {{ $scssPath := "css/posts/list.scss" }}
+  {{ with resources.Get $scssPath }}
+  {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" "css/posts/list.css") }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ end }}
+
 {{ else }}
-    {{ $scssPath := printf "css/%s.scss" $layout }}
-    {{ with resources.Get $scssPath }}
-    {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" (printf "css/%s.css" $layout)) }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-    {{ end }}
+  {{ $layout := .Layout }}
+  {{ $scssPath := printf "css/%s.scss" $layout }}
+  {{ with resources.Get $scssPath }}
+  {{ $css := . | toCSS (dict "transpiler" "dartsass" "targetPath" (printf "css/%s.css" $layout)) }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ end }}
 {{ end }}
 
 {{- /* theme-toggle is enabled */}}

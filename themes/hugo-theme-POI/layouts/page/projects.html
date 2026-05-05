@@ -13,7 +13,10 @@
                 <hr aria-hidden="true">
             {{ end }}
             <div class="row">
-                {{ $projects := .Site.Data.projects }}
+                <!-- ✅ 核心修复：自动读取当前语言的 projects 数据 -->
+                {{ $lang := .Lang }}
+                {{ $projects := index .Site.Data $lang "projects" }}
+
                 {{ range $i, $project := $projects }}
                     {{ partial "cards/machine-project.html" $project }}
                 {{ end }}
@@ -26,4 +29,3 @@
         </main>
     </div>
 {{ end }}
-
