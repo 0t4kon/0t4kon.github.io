@@ -7,6 +7,7 @@
 	<div class="container" itemprop="mainContentOfPage" itemscope role="article">
 		<article id="main" tabindex="-1">
 			{{ partial "title.html" . }}
+			{{ partial "post_meta.html" . }}
 			<hr aria-hidden="true">
 			<div class="row">
 				<div class="col order-1">
@@ -25,7 +26,7 @@
 			<hr aria-hidden="true">
 		</article>
 		<footer>
-      {{- partial "posts/footer.html" . -}}
-  	</footer>
+		{{- partial "posts/footer.html" . -}}
+		</footer>
 	</div>
 {{ end }}

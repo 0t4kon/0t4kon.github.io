@@ -1,4 +1,11 @@
-<footer role="contentinfo">
-	<span>Published: {{ .Date | time.Format "2 January 2006" }}</span>
-	<!--<a href="https://github.com/Strappazzon/www/blob/master/{{ .File.Path }}" aria-label="View edit history">History</a>-->
-</footer>
+  <footer class="post-footer">
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    <ul class="post-tags">
+      {{- range ($.GetTerms $tags) }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- if (.Param "ShowPostNavLinks") }}
+    {{- partial "post_nav_links.html" . }}
+    {{- end }}
+  </footer>

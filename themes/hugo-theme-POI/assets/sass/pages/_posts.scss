@@ -422,10 +422,108 @@ article {
   }
 }
 
-footer {
-  display: flex;
-  blockquote & {
-    justify-content: flex-start;
-    margin-bottom: 0;
-  }
+/* 1. 父容器：强制垂直布局，标签一行、分页一行 */
+.post-footer {
+    margin-top: 20px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.post-footer>* {
+    margin-bottom: 0 !important;
+}
+
+/* 2. 标签按钮样式（保持和主题风格统一） */
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.post-tags li {
+    display: inline-block;
+}
+
+.post-tags a {
+    display: block;
+    padding: 0 14px;
+    color: rgb(155, 156, 157);
+    font-size: 14px;
+    line-height: 34px;
+    background: rgb(55, 56, 62);
+    border-radius: 8px;
+    border: 1px solid rgb(70, 70, 70);
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.post-tags a:hover {
+    background: rgb(51, 51, 51);
+}
+
+/* 3. 分页核心：彻底解决单/双元素贴边问题 */
+.paginav {
+    display: flex !important;
+    align-items: stretch !important;
+    width: 100% !important; /* 强制占满父容器宽度 */
+    padding: 0 !important; /* 清除容器内边距 */
+    margin: 0 !important; /* 清除容器外边距 */
+    gap: 1rem !important; /* 双元素时的间距 */
+    line-height: 1.2;
+    flex-direction: row !important;
+    unicode-bidi: normal !important;
+}
+
+/* 4. 分页卡片基础样式 */
+.paginav a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgb(55, 56, 62);
+    border: 1px solid rgb(70, 70, 70);
+    color: rgb(220, 220, 220);
+    text-decoration: none;
+    transition: background 0.2s ease;
+    width: auto !important;
+    max-width: 45% !important;
+    box-sizing: border-box;
+}
+
+.paginav a:hover {
+    background: rgb(51, 51, 51);
+}
+
+/* 5. 关键：强制贴边规则（解决单/双元素问题） */
+.paginav .title {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: rgb(155, 156, 157);
+}
+
+/* prev 永远贴左 */
+.paginav .prev {
+    text-align: left !important;
+    order: 1 !important;
+}
+
+/* next 永远贴右：用 margin-left: auto 强制推到最右侧，不管有没有 prev */
+.paginav .next {
+    text-align: right !important;
+    margin-left: auto !important; /* 核心！单元素时直接贴右，双元素时也贴右 */
+    order: 2 !important;
+}
+
+.paginav span:hover:not(.title) {
+    text-underline-offset: 0.2rem;
+    text-decoration: underline;
+}
+
+h1>a>svg {
+    display: inline;
 }
