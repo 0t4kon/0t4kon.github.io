@@ -93,3 +93,8 @@
   translation: "十一月"
 - id: December
   translation: "十二月"
+
+- id: tech
+  translation: "技术"
+- id: life
+  translation: "生活"

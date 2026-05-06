@@ -93,3 +93,8 @@
   translation: "November"
 - id: December
   translation: "December"
+
+- id: tech
+  translation: "Tech"
+- id: life
+  translation: "Life"
