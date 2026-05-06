@@ -15,23 +15,23 @@
 {{ if not  .IsHome }}
 	{{ partial "breadcrumbs.html" . }}
 {{ else }}
-	<div class="lang-switches">
-		{{- if (not site.Params.disableLangToggle) }}
-			{{- $currentLang := .Lang }}
-			{{- $validTranslations := where site.Home.Translations "Lang" "ne" $currentLang }}
-			{{- with $validTranslations }}
-			<ul class="lang-menu">
-				{{- range . -}}
-				<li>
-					<a href="{{- .Permalink -}}" 
-					   title=".Language.Params.languageAltTitle"
-					   aria-label="{{.Lang | title}}">
-						{{- .Lang | title -}}
-					</a>
-				</li>
-				{{- end}}
-			</ul>
-			{{- end }}
-		{{- end }}
-	</div>
+<div class="lang-switches">
+    {{- if (not site.Params.disableLangToggle) }}
+        {{- $currentLang := .Lang }}
+        {{- $validTranslations := where site.Home.Translations "Lang" "ne" $currentLang }}
+        {{- with $validTranslations }}
+            <ul class="lang-menu">
+                {{- range . -}}
+                <li>
+                    <a href="{{- .Permalink -}}" 
+                       title="{{ .Language.Params.languageAltTitle | default .Lang | title }}"
+                       aria-label="{{ .Language.Params.languageAltTitle | default .Lang | title }}">
+                        {{- .Language.Params.languageAltTitle | default (.Lang | title) -}}
+                    </a>
+                </li>
+                {{- end}}
+            </ul>
+        {{- end }}
+    {{- end }}
+</div>
 {{ end }}
