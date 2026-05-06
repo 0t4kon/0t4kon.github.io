@@ -45,8 +45,10 @@
   translation: "网站页面"
 - id: path
   translation: "路径"
-- id: posts
+- id: Posts
   translation: "博客"
+- id: Tags
+  translation: "标签"
 
 # 项目卡片
 - id: status

@@ -45,8 +45,10 @@
   translation: "WEBSITE PAGE"
 - id: path
   translation: "PATH"
-- id: posts
+- id: Posts
   translation: "Posts"
+- id: Tags
+  translation: "Tags"
 
 # 项目卡片
 - id: status

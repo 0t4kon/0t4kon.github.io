@@ -12,6 +12,3 @@
 
 - name: 归档
   path: /archives/
-
-- name: 时间线
-  path: /timeline/

@@ -12,6 +12,3 @@
 
 - name: Archives
   path: /archives/
-
-- name: Timeline
-  path: /timeline/

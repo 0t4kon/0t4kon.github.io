@@ -25,6 +25,7 @@ languages:
   en:
     languageName: "English"
     weight: 1
+    contentDir: content/en  # 👈 新增：英文文章目录
     taxonomies:
       category: categories
       tag: tags
@@ -32,7 +33,7 @@ languages:
     menu:
       main:
         - name: Archive
-          url: archives
+          url: archives/
           weight: 5
         - name: Search
           url: search/
@@ -44,31 +45,31 @@ languages:
           url: https://github.com/adityatelange/hugo-PaperMod/wiki/
 
   zh:
-    languageName: ":zh:"
+    languageName: "简体中文"
     weight: 2
     title: Otacon
+    contentDir: content/zh  # 👈 新增：中文文章目录（核心修复）
     taxonomies:
-      category: ZHcategories
-      tag: ZHtags
-      series: ZHseries
+      category: categories
+      tag: tags
+      series: series
     menu:
       main:
         - name: 归档
           url: archives/
           weight: 5
         - name: 标签
-          url: ZHtags/
+          url: tags/
           weight: 10
         - name: 分类
-          url: ZHcategories/
+          url: categories/
           weight: 10
         - name: 系列
-          url: ZHseries/
+          url: series/
           weight: 10
         - name: NullLink
           url: "#"
 
-    # 中文专属配置
     Params:
       languageAltTitle: 简体中文
 
