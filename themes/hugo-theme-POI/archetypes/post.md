@@ -1,8 +1,8 @@
 ---
 title: "{{ .Name }}"
 date: {{ .Date }}
-author: ""
+author: "0t4kon"
 tags: []
 categories: []
-draft: true
+draft: false
 ---
