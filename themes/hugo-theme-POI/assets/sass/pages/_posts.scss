@@ -208,8 +208,8 @@ article {
     }
   }
   .highlight {
-    max-height: px2rem(350px);
-    overflow-y: auto;  
+    max-height: unset !important;
+    overflow-y: visible !important;
   }
   *:not(.highlight) {
     [class^='language-'][class*='highlighter-'] {

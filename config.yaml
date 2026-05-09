@@ -9,7 +9,6 @@ buildDrafts: false           # 不生成草稿文章
 buildFuture: false           # 不生成「未来日期」的文章
 buildExpired: false          # 不生成「 已过期」的文章
 enableEmoji: true            # 启用 Emoji 表情支持
-pygmentsUseClasses: true     # 代码高亮使用 CSS 类渲染
 mainsections: ["posts"]      # 仅保留文章目录，首页只展示你的博客文章
 cleanDestinationDir: true
 
@@ -132,21 +131,11 @@ Params:
       title: View Source on Github
       url: "https://github.com/adityatelange/hugo-PaperMod"
 
-  assets:
-    disableHLJS: true
-
 
 markup: # Markdown 渲染核心配置
   goldmark:  # 允许你在 Markdown 文章里直接写 HTML 代码
     renderer:
       unsafe: true
-  highlight: # 代码高亮
-    noClasses: false
-    # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
-    # lineNos: true
-    # style: monokai
   tableOfContents:
     endLevel: 3
     ordered: false
